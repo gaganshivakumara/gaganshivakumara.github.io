@@ -893,10 +893,40 @@ img {
     animation: gradientFlow 4s ease infinite;
 }
 
+.about-text {
+    background: var(--bg-card);
+    padding: 30px 35px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: visible;
+}
+
+/* Animated gradient border for about text box */
+.about-text::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(90deg, #ffffff, #666666, #ffffff, #666666);
+    background-size: 300% 100%;
+    border-radius: calc(var(--border-radius) + 2px);
+    z-index: -1;
+    opacity: 0.3;
+    animation: gradientFlow 4s ease infinite;
+}
+
 .about-text p {
     margin-bottom: 20px;
     font-size: 1.1rem;
     color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
 }
 
 /* Skills Section */
