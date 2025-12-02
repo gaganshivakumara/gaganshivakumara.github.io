@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Web Developer</title>
+    <meta name="description" content="Portfolio of an aspiring Web Developer & Programmer">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Awesome for Icons (Optional, using CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#hero" class="logo">Your<span class="accent">Name</span>.</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg-effect"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title fade-in">Hi, I'm <span class="text-gradient">Your Name</span></h1>
+            <p class="hero-subtitle fade-in delay-1">Aspiring Web Developer & Programmer</p>
+            <div class="hero-buttons fade-in delay-2">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-outline">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title fade-on-scroll">About Me</h2>
+            <div class="about-content">
+                <div class="about-image fade-on-scroll">
+                    <!-- Placeholder for profile image -->
+                    <div class="img-placeholder">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+                <div class="about-text fade-on-scroll">
+                    <p>
+                        Hello! I'm a passionate developer based in [Your Location]. I specialize in building modern, responsive web applications. 
+                        Currently, I'm studying [Your Major/Field] and honing my skills in full-stack development.
+                    </p>
+                    <p>
+                        My goal is to create digital experiences that are not only visually appealing but also highly functional and user-friendly. 
+                        I'm always eager to learn new technologies and take on challenging projects.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-darker">
+        <div class="container">
+            <h2 class="section-title fade-on-scroll">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <!-- Skill Item 1 -->
+                <div class="skill-card fade-on-scroll">
+                    <i class="fa-brands fa-html5 skill-icon"></i>
+                    <h3>HTML5</h3>
+                </div>
+                <!-- Skill Item 2 -->
+                <div class="skill-card fade-on-scroll">
+                    <i class="fa-brands fa-css3-alt skill-icon"></i>
+                    <h3>CSS3</h3>
+                </div>
+                <!-- Skill Item 3 -->
+                <div class="skill-card fade-on-scroll">
+                    <i class="fa-brands fa-js skill-icon"></i>
+                    <h3>JavaScript</h3>
+                </div>
+                <!-- Skill Item 4 -->
+                <div class="skill-card fade-on-scroll">
+                    <i class="fa-brands fa-python skill-icon"></i>
+                    <h3>Python</h3>
+                </div>
+                <!-- Skill Item 5 -->
+                <div class="skill-card fade-on-scroll">
+                    <i class="fa-brands fa-react skill-icon"></i>
+                    <h3>React</h3>
+                </div>
+                <!-- Skill Item 6 -->
+                <div class="skill-card fade-on-scroll">
+                    <i class="fa-solid fa-database skill-icon"></i>
+                    <h3>SQL</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title fade-on-scroll">Featured Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card fade-on-scroll">
+                    <div class="project-image">
+                        <!-- Placeholder image -->
+                        <div class="img-placeholder-rect">Project Image</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Portfolio Website</h3>
+                        <p>A modern, dark-themed personal portfolio website built with HTML, CSS, and JavaScript.</p>
+                        <div class="project-tags">
+                            <span>HTML</span><span>CSS</span><span>JS</span>
+                        </div>
+                        <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card fade-on-scroll">
+                    <div class="project-image">
+                        <div class="img-placeholder-rect">Project Image</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>E-Commerce Dashboard</h3>
+                        <p>A responsive dashboard for managing products and orders, featuring data visualization.</p>
+                        <div class="project-tags">
+                            <span>React</span><span>Node.js</span><span>Chart.js</span>
+                        </div>
+                        <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card fade-on-scroll">
+                    <div class="project-image">
+                        <div class="img-placeholder-rect">Project Image</div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Task Manager App</h3>
+                        <p>A productivity application to track daily tasks with drag-and-drop functionality.</p>
+                        <div class="project-tags">
+                            <span>Python</span><span>Django</span><span>SQLite</span>
+                        </div>
+                        <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-darker">
+        <div class="container">
+            <h2 class="section-title fade-on-scroll">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info fade-on-scroll">
+                    <h3>Let's Talk</h3>
+                    <p>I'm currently open to new opportunities and collaborations. Feel free to reach out!</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="mailto:email@example.com" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form fade-on-scroll">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+            <p class="footer-note">Designed & Built with <i class="fa-solid fa-heart accent"></i></p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
