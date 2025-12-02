@@ -613,14 +613,124 @@ img {
     width: 100%;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+/* ===== ASTERISK LOGO WITH HOVER ANIMATION ===== */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
 }
 
-.logo .accent {
-    color: var(--accent-primary);
+.asterisk-logo {
+    font-size: 2rem;
+    color: white;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 0 10px rgba(96, 239, 255, 0.5);
+    filter: drop-shadow(0 0 5px var(--accent-secondary));
+}
+
+.logo-container:hover .asterisk-logo {
+    transform: rotate(180deg) scale(0.9);
+    color: var(--accent-secondary);
+    text-shadow: 0 0 20px var(--accent-secondary);
+}
+
+.logo-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: white;
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-left: 0;
+}
+
+.logo-container:hover .logo-text {
+    max-width: 250px;
+    opacity: 1;
+    margin-left: 12px;
+}
+
+/* Gradient text effect for logo on hover */
+.logo-container:hover .logo-text {
+    background: linear-gradient(90deg, #ffffff, var(--accent-secondary), var(--accent-primary));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: logoGradientFlow 2s ease infinite;
+}
+
+@keyframes logoGradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== SEATTLE TIME & WEATHER WIDGET ===== */
+.status-widget {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 8px 16px;
+    background: rgba(0, 255, 100, 0.05);
+    border: 1px solid rgba(0, 255, 100, 0.2);
+    border-radius: 30px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff64;
+    border-radius: 50%;
+    animation: livePulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px #00ff64, 0 0 20px rgba(0, 255, 100, 0.5);
+}
+
+@keyframes livePulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.status-text {
+    color: #00ff64;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 255, 100, 0.5);
+}
+
+.time-weather {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.seattle-time {
+    color: #00ff64;
+    text-shadow: 0 0 8px rgba(0, 255, 100, 0.5);
+}
+
+.divider {
+    color: rgba(0, 255, 100, 0.3);
+}
+
+.seattle-weather {
+    color: #00ff64;
+    text-shadow: 0 0 8px rgba(0, 255, 100, 0.5);
 }
 
 .nav-menu {
@@ -1423,6 +1533,17 @@ img {
     }
 
     .nav-menu.active { right: 0; }
+    
+    /* Hide status widget on mobile */
+    .status-widget { display: none; }
+    
+    /* Logo text always visible on mobile */
+    .logo-text {
+        max-width: 200px;
+        opacity: 1;
+        margin-left: 8px;
+        font-size: 1rem;
+    }
     
     .hero-title { font-size: 2.5rem; }
     .hero-buttons { display: flex; flex-direction: column; gap: 15px; align-items: center; }

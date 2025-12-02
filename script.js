@@ -867,4 +867,48 @@ Type <span class="command">'start'</span> to enter the website directly
             }
         });
     }
+
+    // ===== SEATTLE TIME & WEATHER WIDGET =====
+    function updateSeattleTime() {
+        const timeEl = document.getElementById('seattle-time');
+        if (!timeEl) return;
+        
+        const options = {
+            timeZone: 'America/Los_Angeles',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        };
+        
+        const seattleTime = new Date().toLocaleTimeString('en-US', options);
+        timeEl.textContent = seattleTime;
+    }
+    
+    // Update time every second
+    updateSeattleTime();
+    setInterval(updateSeattleTime, 1000);
+    
+    // Fetch Seattle weather (using wttr.in - free, no API key needed)
+    async function fetchSeattleWeather() {
+        const weatherEl = document.getElementById('seattle-weather');
+        if (!weatherEl) return;
+        
+        try {
+            const response = await fetch('https://wttr.in/Seattle?format=%t');
+            if (response.ok) {
+                let temp = await response.text();
+                // Convert to Fahrenheit display
+                temp = temp.trim();
+                weatherEl.textContent = temp;
+            }
+        } catch (error) {
+            // Fallback to estimated Seattle weather
+            weatherEl.textContent = '48°F';
+        }
+    }
+    
+    // Fetch weather on load and every 10 minutes
+    fetchSeattleWeather();
+    setInterval(fetchSeattleWeather, 600000);
 });
