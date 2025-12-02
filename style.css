@@ -545,6 +545,139 @@ img {
     color: #ef4444;
 }
 
+/* Education Section */
+.education-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.education-card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-medium);
+}
+
+.education-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 10px 30px -10px var(--accent-glow);
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 20px;
+}
+
+.education-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.education-degree {
+    color: var(--accent-secondary);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.education-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.education-details {
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.education-details:last-child {
+    margin-bottom: 0;
+}
+
+/* Awards Section */
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.award-card {
+    background: var(--bg-card);
+    padding: 40px 30px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    transition: var(--transition-medium);
+}
+
+.award-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 10px 30px -10px var(--accent-glow);
+}
+
+.award-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2.5rem;
+    color: var(--accent-primary);
+}
+
+.award-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.award-date {
+    color: var(--accent-secondary);
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.award-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Contact Details */
+.contact-details {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-details i {
+    color: var(--accent-primary);
+    width: 20px;
+}
+
+.contact-details a {
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+
+.contact-details a:hover {
+    color: var(--accent-primary);
+}
+
 /* Animations */
 .fade-in {
     opacity: 0;
@@ -578,6 +711,8 @@ img {
     .hero-title { font-size: 3rem; }
     .about-content { grid-template-columns: 1fr; text-align: center; }
     .contact-wrapper { grid-template-columns: 1fr; }
+    .education-header { flex-direction: column; align-items: flex-start; }
+    .education-date { margin-top: 5px; }
 }
 
 @media (max-width: 768px) {
