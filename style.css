@@ -889,6 +889,10 @@ img {
     text-align: center;
     z-index: 2;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .hero-title {
