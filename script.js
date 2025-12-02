@@ -1,9 +1,241 @@
 /**
  * Gagan Shiva Kumara Portfolio
- * Features: Terminal Landing Page, Snake Game, Custom Cursor, Animations
+ * Features: Terminal Landing Page, Snake Game, Custom Cursor, Animations, Sound Effects
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // ===== SOUND SYSTEM =====
+    let audioContext = null;
+    let soundEnabled = true;
+    
+    // Sound toggle button
+    const soundToggle = document.getElementById('sound-toggle');
+    const soundIcon = document.getElementById('sound-icon');
+    
+    if (soundToggle) {
+        soundToggle.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            soundToggle.classList.toggle('muted', !soundEnabled);
+            soundIcon.className = soundEnabled ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+        });
+    }
+    
+    // Initialize Audio Context on first user interaction
+    function initAudio() {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        return audioContext;
+    }
+    
+    // Sound generator functions
+    const SoundFX = {
+        // Terminal typing sound
+        type: () => {
+            if (!soundEnabled) return;
+            const ctx = initAudio();
+            if (!ctx) return;
+            
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(800 + Math.random() * 400, ctx.currentTime);
+            gain.gain.setValueAtTime(0.03, ctx.currentTime);
+            gain.gain.exponentialDecayTo = gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+            
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.05);
+        },
+        
+        // Terminal command enter sound
+        command: () => {
+            if (!soundEnabled) return;
+            const ctx = initAudio();
+            if (!ctx) return;
+            
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+            
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.15);
+        },
+        
+        // Snake eat food sound
+        eat: () => {
+            if (!soundEnabled) return;
+            const ctx = initAudio();
+            if (!ctx) return;
+            
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(400, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.1);
+            osc.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.15, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+            
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.3);
+        },
+        
+        // Snake collision/death sound
+        collision: () => {
+            if (!soundEnabled) return;
+            const ctx = initAudio();
+            if (!ctx) return;
+            
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(300, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.3);
+            gain.gain.setValueAtTime(0.2, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+            
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.4);
+        },
+        
+        // Game win sound
+        win: () => {
+            if (!soundEnabled) return;
+            const ctx = initAudio();
+            if (!ctx) return;
+            
+            const notes = [523, 659, 784, 1047]; // C5, E5, G5, C6
+            notes.forEach((freq, i) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.15);
+                gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.15);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.3);
+                
+                osc.start(ctx.currentTime + i * 0.15);
+                osc.stop(ctx.currentTime + i * 0.15 + 0.3);
+            });
+        },
+        
+        // UI hover sound
+        hover: () => {
+            if (!soundEnabled) return;
+            const ctx = initAudio();
+            if (!ctx) return;
+            
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(1200, ctx.currentTime);
+            gain.gain.setValueAtTime(0.02, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+            
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.05);
+        },
+        
+        // UI click sound
+        click: () => {
+            if (!soundEnabled) return;
+            const ctx = initAudio();
+            if (!ctx) return;
+            
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(800, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
+            
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.1);
+        },
+        
+        // Website enter transition sound
+        transition: () => {
+            if (!soundEnabled) return;
+            const ctx = initAudio();
+            if (!ctx) return;
+            
+            const osc = ctx.createOscillator();
+            const osc2 = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.connect(gain);
+            osc2.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.type = 'sine';
+            osc2.type = 'sine';
+            osc.frequency.setValueAtTime(200, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.5);
+            osc2.frequency.setValueAtTime(300, ctx.currentTime);
+            osc2.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.5);
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+            
+            osc.start(ctx.currentTime);
+            osc2.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.6);
+            osc2.stop(ctx.currentTime + 0.6);
+        },
+        
+        // Snake move sound (subtle)
+        move: () => {
+            if (!soundEnabled) return;
+            const ctx = initAudio();
+            if (!ctx) return;
+            
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(200, ctx.currentTime);
+            gain.gain.setValueAtTime(0.01, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.02);
+            
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.02);
+        }
+    };
     
     // ===== CUSTOM CURSOR =====
     const cursor = document.querySelector('.custom-cursor');
@@ -33,8 +265,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hover effect on interactive elements
         const interactiveElements = document.querySelectorAll('a, button, input, textarea, .clickable, .nav-link, .btn, .social-icon');
         interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                SoundFX.hover();
+            });
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            el.addEventListener('click', () => SoundFX.click());
         });
     }
     
@@ -192,6 +428,7 @@ Type <span class="command">'start'</span> to enter the website directly
     if (terminalInput) {
         terminalInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
+                SoundFX.command();
                 const input = terminalInput.value;
                 const output = processCommand(input);
                 
@@ -214,6 +451,9 @@ Type <span class="command">'start'</span> to enter the website directly
                     historyIndex = commandHistory.length;
                     terminalInput.value = '';
                 }
+            } else if (e.key.length === 1) {
+                // Play typing sound for character keys
+                SoundFX.type();
             }
         });
         
@@ -295,6 +535,7 @@ Type <span class="command">'start'</span> to enter the website directly
             
             // Self collision
             if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+                SoundFX.collision();
                 resetGame();
                 return;
             }
@@ -303,10 +544,12 @@ Type <span class="command">'start'</span> to enter the website directly
             
             // Check food collision
             if (head.x === food.x && head.y === food.y) {
+                SoundFX.eat();
                 score++;
                 scoreDisplay.textContent = `Score: ${score} / ${targetScore}`;
                 
                 if (score >= targetScore) {
+                    SoundFX.win();
                     clearInterval(gameLoop);
                     setTimeout(() => enterWebsite(), 1000);
                     return;
@@ -349,19 +592,19 @@ Type <span class="command">'start'</span> to enter the website directly
         document.addEventListener('keydown', (e) => {
             switch(e.key) {
                 case 'ArrowUp': case 'w': case 'W':
-                    if (dy !== 1) { dx = 0; dy = -1; }
+                    if (dy !== 1) { dx = 0; dy = -1; SoundFX.move(); }
                     e.preventDefault();
                     break;
                 case 'ArrowDown': case 's': case 'S':
-                    if (dy !== -1) { dx = 0; dy = 1; }
+                    if (dy !== -1) { dx = 0; dy = 1; SoundFX.move(); }
                     e.preventDefault();
                     break;
                 case 'ArrowLeft': case 'a': case 'A':
-                    if (dx !== 1) { dx = -1; dy = 0; }
+                    if (dx !== 1) { dx = -1; dy = 0; SoundFX.move(); }
                     e.preventDefault();
                     break;
                 case 'ArrowRight': case 'd': case 'D':
-                    if (dx !== -1) { dx = 1; dy = 0; }
+                    if (dx !== -1) { dx = 1; dy = 0; SoundFX.move(); }
                     e.preventDefault();
                     break;
             }
@@ -374,6 +617,7 @@ Type <span class="command">'start'</span> to enter the website directly
     
     // ===== ENTER WEBSITE =====
     function enterWebsite() {
+        SoundFX.transition();
         terminalOverlay.classList.add('hidden');
         mainContent.classList.remove('hidden');
         
@@ -381,8 +625,12 @@ Type <span class="command">'start'</span> to enter the website directly
         setTimeout(() => {
             const interactiveElements = document.querySelectorAll('a, button, input, textarea, .clickable, .nav-link, .btn, .social-icon');
             interactiveElements.forEach(el => {
-                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hover');
+                    SoundFX.hover();
+                });
                 el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+                el.addEventListener('click', () => SoundFX.click());
             });
         }, 100);
     }
