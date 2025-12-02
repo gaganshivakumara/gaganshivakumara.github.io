@@ -669,7 +669,7 @@ Type <span class="command">'start'</span> to enter the website directly
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             // Draw grid (subtle)
-            ctx.strokeStyle = 'rgba(96, 239, 255, 0.1)';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
             ctx.lineWidth = 0.5;
             for (let i = 0; i <= tileCount; i++) {
                 ctx.beginPath();
@@ -682,23 +682,22 @@ Type <span class="command">'start'</span> to enter the website directly
                 ctx.stroke();
             }
             
-            // Update color hue for cycling effect
-            colorHue = (colorHue + 0.5) % 360;
-            const snakeColor = `hsl(${colorHue}, 100%, 60%)`;
+            // Black and white snake
+            const snakeGlow = '#ffffff';
             
             // Draw snake with glow
             ctx.shadowBlur = 15;
-            ctx.shadowColor = snakeColor;
+            ctx.shadowColor = snakeGlow;
             snake.forEach((segment, index) => {
-                const alpha = 1 - (index / snake.length) * 0.5;
-                ctx.fillStyle = index === 0 ? '#60efff' : `rgba(0, 97, 255, ${alpha})`;
+                const brightness = 255 - (index / snake.length) * 100;
+                ctx.fillStyle = index === 0 ? '#ffffff' : `rgb(${brightness}, ${brightness}, ${brightness})`;
                 ctx.fillRect(segment.x * gridSize + 2, segment.y * gridSize + 2, gridSize - 4, gridSize - 4);
             });
             
-            // Draw food with pulsing glow
-            ctx.shadowColor = '#ff6b6b';
+            // Draw food with pulsing glow (white)
+            ctx.shadowColor = '#ffffff';
             ctx.shadowBlur = 20 + Math.sin(Date.now() / 200) * 5;
-            ctx.fillStyle = '#ff6b6b';
+            ctx.fillStyle = '#888888';
             ctx.beginPath();
             ctx.arc(food.x * gridSize + gridSize/2, food.y * gridSize + gridSize/2, gridSize/2 - 3, 0, Math.PI * 2);
             ctx.fill();
