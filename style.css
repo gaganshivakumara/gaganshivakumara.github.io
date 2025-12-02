@@ -632,14 +632,14 @@ img {
 .status-widget {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 8px 16px;
+    gap: 10px;
+    padding: 5px 12px;
     background: rgba(0, 97, 255, 0.08);
     border: 1px solid rgba(96, 239, 255, 0.3);
-    border-radius: 30px;
+    border-radius: 20px;
     font-family: 'Fira Code', monospace;
-    font-size: 0.8rem;
-    box-shadow: 0 0 20px rgba(0, 97, 255, 0.1);
+    font-size: 0.75rem;
+    box-shadow: 0 0 15px rgba(0, 97, 255, 0.1);
 }
 
 /* Hero section widget styling */
