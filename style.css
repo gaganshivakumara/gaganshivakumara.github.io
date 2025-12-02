@@ -977,7 +977,7 @@ img {
 }
 
 .skill-card:hover::after {
-    opacity: 1;
+    opacity: 0.4;
 }
 
 .skill-card:hover::before {
@@ -1048,7 +1048,7 @@ img {
 }
 
 .project-card:hover::before {
-    opacity: 1;
+    opacity: 0.4;
 }
 
 .project-card::after {
@@ -1367,7 +1367,7 @@ img {
 }
 
 .education-card:hover::before {
-    opacity: 1;
+    opacity: 0.4;
 }
 
 .education-card:hover {
